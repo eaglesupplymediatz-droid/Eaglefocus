@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eagle Focus Digital Platform</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #090909;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+header {
+  background: #151515;
+  padding: 25px 15px;
+  text-align: center;
+  border-bottom: 2px solid gold;
+}
+header h1 {
+  color: gold;
+  margin: 5px;
+  font-size: 27px;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 16px;
+  background: #202020;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+}
+.hero {
+  text-align: center;
+  padding: 55px 15px;
+}
+.hero h2 {
+  color: gold;
+  font-size: 27px;
+}
+.hero p { color: #ccc; }
+.container {
+  padding: 20px;
+  max-width: 750px;
+  margin: auto;
+}
+.card {
+  background: #191919;
+  border: 1px solid #66551c;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+h3 { color: gold; }
+input, button {
+  padding: 12px;
+  margin-top: 10px;
+  max-width: 100%;
+}
+button {
+  background: gold;
+  color: black;
+  border: 0;
+  border-radius: 6px;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  padding: 25px;
+  color: gold;
+  background: #151515;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>EAGLE FOCUS</h1>
+<p>GLOBAL DIGITAL PLATFORM</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#music">Music</a>
+<a href="#videos">Videos</a>
+<a href="#about">About</a>
+</nav>
+
+<section class="hero" id="home">
+<h2>WELCOME TO EAGLE FOCUS</h2>
+<p>Music, Videos and Social Networking</p>
+<p>Your Global Digital Entertainment Platform</p>
+</section>
+
+<div class="container">
+
+<section class="card" id="music">
+<h3>🎵 Music Upload</h3>
+<p>Select your music file:</p>
+<input type="file" id="musicFile" accept="audio/*">
+<p id="musicStatus">No music selected.</p>
+</section>
+
+<section class="card" id="videos">
+<h3>🎬 Video Upload</h3>
+<p>Select your video file:</p>
+<input type="file" id="videoFile" accept="video/*">
+<p id="videoStatus">No video selected.</p>
+</section>
+
+<section class="card" id="about">
+<h3>About Eagle Focus</h3>
+<p>
+EAGLE FOCUS is a digital platform
+for music, videos and social networking.
+</p>
+<p>Connecting Talent to the World.</p>
+</section>
+
+</div>
+
+<footer>
+<p>© 2026 EAGLE FOCUS</p>
+<p>All Rights Reserved</p>
+</footer>
+
+<script>
+document.getElementById("musicFile")
+.addEventListener("change", function() {
+document.getElementById("musicStatus").textContent =
+this.files.length ? this.files[0].name : "No music selected.";
+});
+
+document.getElementById("videoFile")
+.addEventListener("change", function() {
+document.getElementById("videoStatus").textContent =
+this.files.length ? this.files[0].name : "No video selected.";
+});
+</script>
+
+</body>
+</html>
