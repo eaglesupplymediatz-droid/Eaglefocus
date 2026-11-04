@@ -1,164 +1,224 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eagle Focus Digital Platform</title>
+<title>EAGLE FOCUS DIGITAL PLATFORM</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #090909;
-  color: white;
-  font-family: Arial, sans-serif;
+*{box-sizing:border-box}
+body{
+margin:0;background:#090909;color:white;
+font-family:Arial,sans-serif;
 }
-header {
-  background: #151515;
-  padding: 25px 15px;
-  text-align: center;
-  border-bottom: 2px solid gold;
+header{
+background:#151515;padding:25px 12px;
+text-align:center;border-bottom:2px solid gold;
 }
-header h1 {
-  color: gold;
-  margin: 5px;
-  font-size: 27px;
+h1{color:gold;margin:5px}
+header p{color:#ddd}
+nav{
+display:flex;justify-content:center;
+flex-wrap:wrap;gap:10px;padding:15px;
+background:#202020;
 }
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  padding: 16px;
-  background: #202020;
+button{
+background:gold;color:black;border:0;
+padding:12px 16px;border-radius:7px;
+font-weight:bold;cursor:pointer;
 }
-nav a {
-  color: white;
-  text-decoration: none;
+section{
+margin:15px;padding:18px;
+background:#171717;border:1px solid #444;
+border-radius:12px;
 }
-.hero {
-  text-align: center;
-  padding: 55px 15px;
+h2{color:gold}
+input{
+width:100%;padding:13px;margin:8px 0;
+border-radius:6px;border:1px solid gold;
+background:#252525;color:white;
 }
-.hero h2 {
-  color: gold;
-  font-size: 27px;
+.song{
+padding:13px;margin:10px 0;
+background:#292929;border-radius:8px;
 }
-.hero p { color: #ccc; }
-.container {
-  padding: 20px;
-  max-width: 750px;
-  margin: auto;
-}
-.card {
-  background: #191919;
-  border: 1px solid #66551c;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-h3 { color: gold; }
-input, button {
-  padding: 12px;
-  margin-top: 10px;
-  max-width: 100%;
-}
-button {
-  background: gold;
-  color: black;
-  border: 0;
-  border-radius: 6px;
-  font-weight: bold;
-}
-footer {
-  text-align: center;
-  padding: 25px;
-  color: gold;
-  background: #151515;
+.song strong{color:gold}
+.hidden{display:none}
+footer{
+text-align:center;padding:25px;
+color:gold;border-top:1px solid gold;
 }
 </style>
 </head>
 <body>
 
 <header>
-<h1>EAGLE FOCUS</h1>
-<p>GLOBAL DIGITAL PLATFORM</p>
+<h1>🦅 EAGLE FOCUS</h1>
+<p>DIGITAL MUSIC & MEDIA PLATFORM</p>
+<p>Karibu kwenye ulimwengu wa muziki</p>
 </header>
 
 <nav>
-<a href="#home">Home</a>
-<a href="#music">Music</a>
-<a href="#videos">Videos</a>
-<a href="#about">About</a>
+<button onclick="show('home')">HOME</button>
+<button onclick="show('register')">REGISTER</button>
+<button onclick="show('login')">LOGIN</button>
+<button onclick="show('music')">MUSIC</button>
+<button onclick="show('upload')">UPLOAD</button>
 </nav>
 
-<section class="hero" id="home">
+<section id="home">
 <h2>WELCOME TO EAGLE FOCUS</h2>
-<p>Music, Videos and Social Networking</p>
-<p>Your Global Digital Entertainment Platform</p>
+<p>Jukwaa la wasanii, wanamuziki na wadau wa burudani duniani kote.</p>
+<p>Jiunge nasi, pakia nyimbo zako na shiriki kipaji chako na dunia.</p>
+<button onclick="show('register')">JIUNGE SASA</button>
 </section>
 
-<div class="container">
-
-<section class="card" id="music">
-<h3>🎵 Music Upload</h3>
-<p>Select your music file:</p>
-<input type="file" id="musicFile" accept="audio/*">
-<p id="musicStatus">No music selected.</p>
+<section id="register" class="hidden">
+<h2>JISAJILI SASA</h2>
+<input id="name" placeholder="Jina lako kamili">
+<input id="email" type="email" placeholder="Email yako">
+<input id="password" type="password" placeholder="Tengeneza Password">
+<button onclick="register()">CREATE ACCOUNT</button>
+<p id="regMessage"></p>
 </section>
 
-<section class="card" id="videos">
-<h3>🎬 Video Upload</h3>
-<p>Select your video file:</p>
-<input type="file" id="videoFile" accept="video/*">
-<p id="videoStatus">No video selected.</p>
+<section id="login" class="hidden">
+<h2>MEMBER LOGIN</h2>
+<input id="loginEmail" type="email" placeholder="Email">
+<input id="loginPassword" type="password" placeholder="Password">
+<button onclick="login()">INGIA KWENYE AKAUNTI</button>
+<p id="loginMessage"></p>
 </section>
 
- <!-- CREATOR DASHBOARD -->
-<section class="card" id="creator">
-  <h3>🎤 Creator Dashboard</h3>
-  <p>Welcome to your Creator Account.</p>
-  <p>My Music: 0</p>
-  <p>My Videos: 0</p>
-  <p>Total Plays: 0</p>
-  <p>My Earnings: TSh 0</p>
+<section id="dashboard" class="hidden">
+<h2>MEMBER DASHBOARD</h2>
+<p id="welcome"></p>
+<p>Karibu kwenye akaunti yako ya Eagle Focus.</p>
+<button onclick="show('upload')">UPLOAD MUSIC</button>
+<button onclick="logout()">LOGOUT</button>
 </section>
 
-<!-- OWNER DASHBOARD -->
-<section class="card" id="owner">
-  <h3>👑 Owner Dashboard</h3>
-  <p>EAGLE FOCUS Administration</p>
-  <p>Total Creators: 0</p>
-  <p>Total Music: 0</p>
-  <p>Total Videos: 0</p>
-  <p>Platform Revenue: TSh 0</p>
-</section><section class="card" id="about">
-<h3>About Eagle Focus</h3>
-<p>
-EAGLE FOCUS is a digital platform
-for music, videos and social networking.
-</p>
-<p>Connecting Talent to the World.</p>
+<section id="upload" class="hidden">
+<h2>UPLOAD YOUR MUSIC</h2>
+<input id="artist" placeholder="Jina la msanii">
+<input id="songName" placeholder="Jina la wimbo">
+<input id="audioFile" type="file" accept="audio/*">
+<button onclick="uploadSong()">PAKIA WIMBO</button>
+<p id="uploadMessage"></p>
 </section>
 
+<section id="music" class="hidden">
+<h2>EXPLORE MUSIC</h2>
+<div id="songList">
+<p>Bado hakuna nyimbo zilizopakiwa.</p>
 </div>
+</section>
 
 <footer>
-<p>© 2026 EAGLE FOCUS</p>
-<p>All Rights Reserved</p>
+<h2>EAGLE FOCUS</h2>
+<p>Music • Artists • Entertainment • Worldwide</p>
+<p>© 2026 Eagle Focus. All Rights Reserved.</p>
 </footer>
 
 <script>
-document.getElementById("musicFile")
-.addEventListener("change", function() {
-document.getElementById("musicStatus").textContent =
-this.files.length ? this.files[0].name : "No music selected.";
+function show(id){
+document.querySelectorAll('section').forEach(s=>{
+s.classList.add('hidden');
 });
+document.getElementById(id).classList.remove('hidden');
+}
 
-document.getElementById("videoFile")
-.addEventListener("change", function() {
-document.getElementById("videoStatus").textContent =
-this.files.length ? this.files[0].name : "No video selected.";
+function register(){
+let name=document.getElementById('name').value;
+let email=document.getElementById('email').value;
+let password=document.getElementById('password').value;
+
+if(!name||!email||!password){
+alert('Jaza taarifa zote kwanza');
+return;
+}
+
+localStorage.setItem('efUser',JSON.stringify({
+name,email,password
+}));
+
+document.getElementById('regMessage').innerText=
+'Usajili wa majaribio umefanikiwa! Sasa ingia.';
+}
+
+function login(){
+let user=JSON.parse(localStorage.getItem('efUser')||'null');
+let email=document.getElementById('loginEmail').value;
+let password=document.getElementById('loginPassword').value;
+
+if(user&&user.email===email&&user.password===password){
+document.getElementById('welcome').innerText=
+'Karibu '+user.name;
+show('dashboard');
+}else{
+document.getElementById('loginMessage').innerText=
+'Taarifa si sahihi au hujajisajili.';
+}
+}
+
+function logout(){
+show('home');
+}
+
+let songs=[];
+
+function uploadSong(){
+let artist=document.getElementById('artist').value;
+let title=document.getElementById('songName').value;
+let file=document.getElementById('audioFile').files[0];
+
+if(!artist||!title||!file){
+alert('Jaza taarifa na chagua wimbo');
+return;
+}
+
+if(!file.type.startsWith('audio/')){
+alert('Chagua faili la muziki');
+return;
+}
+
+let url=URL.createObjectURL(file);
+
+songs.push({artist,title,url});
+renderSongs();
+
+document.getElementById('uploadMessage').innerText=
+'Wimbo umeongezwa kwenye majaribio!';
+
+show('music');
+}
+
+function renderSongs(){
+let list=document.getElementById('songList');
+list.innerHTML='';
+
+songs.forEach(song=>{
+let div=document.createElement('div');
+div.className='song';
+
+let name=document.createElement('strong');
+name.textContent=song.title+' - '+song.artist;
+
+let audio=document.createElement('audio');
+audio.controls=true;
+audio.src=song.url;
+audio.style.width='100%';
+
+let download=document.createElement('a');
+download.href=song.url;
+download.download=song.title+'.mp3';
+download.textContent='DOWNLOAD SONG';
+download.style.color='gold';
+
+div.append(name,audio,download);
+list.appendChild(div);
 });
+}
 </script>
 
 </body>
